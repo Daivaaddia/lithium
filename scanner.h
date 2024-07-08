@@ -1,0 +1,1 @@
+int scan(FILE *file, struct token *tok);
