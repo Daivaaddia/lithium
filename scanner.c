@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "defs.h"
-#include "scanner.h"
 
 
 static int scanInt(FILE *file) {
@@ -22,19 +21,21 @@ static int scanInt(FILE *file) {
     return num;
 }
 
-int scan(FILE *file, struct token *tok) {
+void scan(FILE *file, struct token *tok) {
     int byte = fgetc(file);
     // skip whitespace
     while (isspace(byte)) {
         byte = fgetc(file);
         if (byte == EOF) {
-            return 0;
+            tok->token = T_EOF;
+            return;
         }
     }
 
     switch(byte) {
         case EOF:
-            return 0;
+            tok->token = T_EOF;
+            break;
         case '+':
             tok->token = T_PLUS;
             break;
@@ -81,6 +82,4 @@ int scan(FILE *file, struct token *tok) {
                 exit(1); 
             }
     }
-
-    return 1;
 }

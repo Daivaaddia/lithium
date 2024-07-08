@@ -4,8 +4,6 @@
 #include <stdlib.h>
 
 #include "defs.h"
-#include "scanner.h"
-
 
 int main(int argc, char **argv) {
     if (argc != 2) {
@@ -20,14 +18,9 @@ int main(int argc, char **argv) {
         exit(1);
     }
 
-    char *tokenStrings[7] = {";", "+", "-", "*", "/", "INTLIT", "EXIT"};
+    //char *tokenStrings[7] = {";", "+", "-", "*", "/", "INTLIT", "EXIT"};
 
-    struct token tok;
-    while (scan(inpFile, &tok)) {
-        printf("Token found: %s", tokenStrings[tok.token]);
-        if (tok.token == T_INTLIT) {
-            printf(", Value: %d", tok.value);
-        }
-        putchar('\n');
-    }
+    struct astNode *ast = parse(inpFile);
+    printf("%d\n", interpret(ast));
+
 }

@@ -12,8 +12,8 @@ msan: all
 nosan: all
 
 .PHONY: all
-all: main.c scanner.c parser.c tree.c
-	$(CC) $(CFLAGS) -o lithium main.c scanner.c parser.c tree.c
+all: main.c scanner.c parser.c tree.c interpreter.c
+	$(CC) $(CFLAGS) -o lithium main.c scanner.c parser.c tree.c interpreter.c
 
 .PHONY: clean
 clean: 

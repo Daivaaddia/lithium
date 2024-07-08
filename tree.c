@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include <defs.h>
+#include "defs.h"
 
 struct astNode *createNode(ASTNodeType type, struct astNode *left, struct astNode *right, int val) {
     struct astNode *new = malloc(sizeof(*new));
